@@ -1,0 +1,38 @@
+version: "3"
+services:
+  web:
+    image: node:lts 
+    container_name: api
+    volumes:
+      # - pip34:/usr/local/lib/python3.4/site-packages
+      - ./:/usr/src/app # Mount your Django project code into the container
+    working_dir: /usr/src/app
+    ports:
+      - "80:80" # Map container port 8000 to host port 8000
+    environment:
+      - DB_HOST=db # Set the database host to the PostgreSQL container's service name
+      - DB_PORT=5432 # Set the database port
+      - DB_NAME=autoparts # Set your Django database name
+      - DB_USER=postgres # Set your Django database user
+      - DB_PASSWORD=postgres # Set your Django database password
+    depends_on:
+      - db # Ensure the PostgreSQL container is started before the Django container
+    command: ["./node_modules/.bin/nodemon"]
+
+    # PostgreSQL database container
+  db:
+    image: postgres:latest # You can replace 'postgres:latest' with the specific PostgreSQL image you want to use
+    container_name: postgres_db
+    environment:
+      - POSTGRES_DB=autoparts # Set your PostgreSQL database name
+      - POSTGRES_USER=postgres # Set your PostgreSQL database user
+      - POSTGRES_PASSWORD=postgres # Set your PostgreSQL database password
+    ports:
+      - "5432:5432" # Map container port 5432 to host port 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persist PostgreSQL data
+
+volumes:
+  postgres_data:
+  # pip34:
+  #   external: true

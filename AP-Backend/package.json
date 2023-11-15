@@ -1,0 +1,37 @@
+{
+  "name": "lidj",
+  "version": "1.0.0",
+  "description": "List It Don't Junkit",
+  "main": "src/server.js",
+  "scripts": {
+    "seed-up": "npx knex seed:run --knexfile knexfile.mjs --esm",
+    "seed-make": "npx knex seed:make --knexfile knexfile.mjs --esm",
+    "db-migrate": "npx knex migrate:up --knexfile knexfile.mjs --esm  ",
+    "db-migration": "npx knex migrate:make  --knexfile knexfile.mjs --esm",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "Maheen Khan",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "express": "^4.18.2",
+    "knex": "^3.0.1",
+    "neat-csv": "^7.0.0",
+    "nodemailer": "^6.9.7",
+    "pg": "^8.11.3",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.2.0",
+    "eslint": "^8.53.0",
+    "eslint-config-semistandard": "^17.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^3.0.1",
+    "prettier": "3.0.3"
+  }
+}
